@@ -1,22 +1,31 @@
 package org.example;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Commande")
 public class Commande {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idC;
+
     @Column(name = "dateC")
     private LocalDate dateC;
+
     @ManyToOne
+    @JoinColumn(name = "client_id") // Foreign key column in the Commande table
     private Client client;
+
     @ManyToMany
-    private static ArrayList<Produit> produits = new ArrayList<Produit>();
+    @JoinTable(
+        name = "commande_produit", // Join table name
+        joinColumns = @JoinColumn(name = "commande_id"), // Foreign key for Commande
+        inverseJoinColumns = @JoinColumn(name = "produit_id") // Foreign key for Produit
+    )
+    private List<Produit> produits = new ArrayList<>();
 
     public Commande(int idC, LocalDate dateC, Client client) {
         this.idC = idC;
@@ -47,7 +56,7 @@ public class Commande {
         this.client = client;
     }
 
-    public ArrayList<Produit> getProduits() {
+    public List<Produit> getProduits() {
         return produits;
     }
 
@@ -56,10 +65,10 @@ public class Commande {
     }
 
     public double calculerTotal() {
-        double rep = 0;
+        double total = 0;
         for (Produit p : produits) {
-            rep += p.getPrix();
+            total += p.getPrix();
         }
-        return rep;
+        return total;
     }
 }

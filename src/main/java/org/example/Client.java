@@ -2,19 +2,24 @@ package org.example;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="Client")
 public class Client {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClient;
+
     @Column(name="nom")
     private String nom;
+
     @Column(name="adresse")
     private String adresse;
-    @OneToMany
-    private static ArrayList<Commande> commandes = new ArrayList<Commande>();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commande> commandes = new ArrayList<>();
 
     public Client(int idClient, String nom, String adresse) {
         this.idClient = idClient;
@@ -45,11 +50,12 @@ public class Client {
         this.adresse = adresse;
     }
 
-    public ArrayList<Commande> getCommandes() {
+    public List<Commande> getCommandes() {
         return commandes;
     }
 
     public void addCommande(Commande c) {
+        c.setClient(this); // Synchronize both sides
         commandes.add(c);
     }
 }

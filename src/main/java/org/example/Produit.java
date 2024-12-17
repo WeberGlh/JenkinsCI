@@ -2,21 +2,26 @@ package org.example;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Produit")
 public class Produit {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduit;
-    @Column(name = "nom")
+
+    @Column(name = "nom", nullable = false)
     private String nom;
-    @Column(name = "prix")
+
+    @Column(name = "prix", nullable = false)
     private double prix;
-    @Column(name = "stock")
+
+    @Column(name = "stock", nullable = false)
     private int stock;
-    @ManyToMany
-    private static ArrayList<Commande> commandes = new ArrayList<Commande>();
+
+    @ManyToMany(mappedBy = "produits") // Inverse side of the ManyToMany relationship
+    private List<Commande> commandes = new ArrayList<>();
 
     public Produit(int idProduit, String nom, double prix, int stock) {
         this.idProduit = idProduit;
@@ -27,7 +32,6 @@ public class Produit {
 
     public Produit() {
     }
-
 
     public int getIdProduit() {
         return idProduit;
@@ -57,11 +61,12 @@ public class Produit {
         this.stock = stock;
     }
 
-    public ArrayList<Commande> getCommandes() {
+    public List<Commande> getCommandes() {
         return commandes;
     }
 
     public void addCommande(Commande c) {
         commandes.add(c);
+        c.getProduits().add(this); // Ensure bidirectional consistency
     }
 }

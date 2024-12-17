@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,43 +11,50 @@ import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
-	private static final Logger logger = Logger.getLogger("org.hibernate");
+    private static final Logger logger = Logger.getLogger("org.hibernate");
 
-	static {
-		logger.setLevel(Level.WARNING);
-	}
+    static {
+        logger.setLevel(Level.WARNING); // Set Hibernate logging level
+    }
 
-	private static SessionFactory sessionFactory = null;
+    private static SessionFactory sessionFactory = null;
 
-	private static SessionFactory buildSessionFactory() {
+    private static SessionFactory buildSessionFactory() {
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        try {
+            SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 
-		/**
-		 * configures settings from hibernate.cfg.xml
-		 */
-		ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+            // Add shutdown hook for cleanup
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                if (sessionFactory != null) {
+                    sessionFactory.close();
+                    logger.info("SessionFactory closed on shutdown.");
+                }
+            }));
 
-		try {
-			return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception ex) {
-			/**
-			 * The registry would be destroyed by the SessionFactory, but we had
-			 * trouble building the SessionFactory so destroy it manually.
-			 */
-			StandardServiceRegistryBuilder.destroy(registry);
-			throw ex;
-		}
+            return factory;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "SessionFactory creation failed", ex);
+            StandardServiceRegistryBuilder.destroy(registry);
+            throw ex; // Re-throw exception
+        }
+    }
 
-	}
+    public static void closeSessionFactory() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+            logger.info("SessionFactory closed.");
+        }
+    }
 
-	public static void closeSessionFactory() {
-		if (sessionFactory != null)
-			sessionFactory.close();
-	}
-
-	public static Session getSession() {
-		if (sessionFactory == null)
-			sessionFactory = buildSessionFactory();
-		return sessionFactory.openSession();
-	}
-
+    public static Session getSession() {
+        if (sessionFactory == null) {
+            synchronized (HibernateUtil.class) {
+                if (sessionFactory == null) {
+                    sessionFactory = buildSessionFactory();
+                }
+            }
+        }
+        return sessionFactory.openSession();
+    }
 }

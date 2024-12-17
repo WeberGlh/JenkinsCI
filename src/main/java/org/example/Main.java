@@ -42,21 +42,15 @@ public class Main {
 
         // Association des produits et commandes
         c1.addProduit(chaise);
-        chaise.addCommande(c1);
         c1.addProduit(bureau);
-        bureau.addCommande(c1);
         guilhem.addCommande(c1);
 
         c2.addProduit(table);
-        table.addCommande(c2);
         c2.addProduit(lampe);
-        lampe.addCommande(c2);
         cyran.addCommande(c2);
 
         c3.addProduit(lit);
-        lit.addCommande(c3);
         c3.addProduit(tableDeChevet);
-        tableDeChevet.addCommande(c3);
         tristan.addCommande(c3);
     }
 
@@ -66,6 +60,16 @@ public class Main {
             total += commande.calculerTotal();
         }
         return client.getCommandes().isEmpty() ? 0 : total / client.getCommandes().size();
+    }
+
+    public static void printClientOrders(Client client) {
+        System.out.println("Client: " + client.getNom());
+        for (Commande commande : client.getCommandes()) {
+            System.out.println("  Commande #" + commande.getIdC() + " - Total: " + commande.calculerTotal());
+            for (Produit produit : commande.getProduits()) {
+                System.out.println("    Produit: " + produit.getNom() + " - Prix: " + produit.getPrix());
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -84,5 +88,8 @@ public class Main {
         Commande c2 = commandes.get(1); // Deuxième commande
         double totalC2 = c2.calculerTotal();
         System.out.println("Total de la commande 2 : " + totalC2);
+
+        // Affichage détaillé des commandes d'un client
+        printClientOrders(guilhem);
     }
 }
