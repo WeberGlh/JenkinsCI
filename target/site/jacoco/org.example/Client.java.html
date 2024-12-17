@@ -18,8 +18,8 @@ public class Client {
     @Column(name=&quot;adresse&quot;)
     private String adresse;
 
-    @OneToMany(mappedBy = &quot;client&quot;, cascade = CascadeType.ALL, orphanRemoval = true)
-<span class="pc" id="L22">    private List&lt;Commande&gt; commandes = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L21">    @OneToMany(mappedBy = &quot;client&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</span>
+    private List&lt;Commande&gt; commandes = new ArrayList&lt;&gt;();
 
 <span class="fc" id="L24">    public Client(int idClient, String nom, String adresse) {</span>
 <span class="fc" id="L25">        this.idClient = idClient;</span>

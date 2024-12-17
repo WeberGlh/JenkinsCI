@@ -8,57 +8,57 @@ import java.util.List;
 
     public static void insertion(List&lt;Client&gt; clients, List&lt;Produit&gt; produits, List&lt;Commande&gt; commandes) {
         // Produits
-<span class="nc" id="L11">        Produit chaise = new Produit(1, &quot;chaise&quot;, 7.99, 40);</span>
-<span class="nc" id="L12">        Produit table = new Produit(2, &quot;table&quot;, 24.99, 30);</span>
-<span class="nc" id="L13">        Produit lampe = new Produit(3, &quot;lampe&quot;, 19.99, 25);</span>
-<span class="nc" id="L14">        Produit lit = new Produit(4, &quot;lit&quot;, 99.99, 10);</span>
-<span class="nc" id="L15">        Produit tableDeChevet = new Produit(5, &quot;table de chevet&quot;, 14.99, 35);</span>
-<span class="nc" id="L16">        Produit bureau = new Produit(6, &quot;bureau&quot;, 49.99, 15);</span>
+<span class="fc" id="L11">        Produit chaise = new Produit(1, &quot;chaise&quot;, 7.99, 40);</span>
+<span class="fc" id="L12">        Produit table = new Produit(2, &quot;table&quot;, 24.99, 30);</span>
+<span class="fc" id="L13">        Produit lampe = new Produit(3, &quot;lampe&quot;, 19.99, 25);</span>
+<span class="fc" id="L14">        Produit lit = new Produit(4, &quot;lit&quot;, 99.99, 10);</span>
+<span class="fc" id="L15">        Produit tableDeChevet = new Produit(5, &quot;table de chevet&quot;, 14.99, 35);</span>
+<span class="fc" id="L16">        Produit bureau = new Produit(6, &quot;bureau&quot;, 49.99, 15);</span>
 
-<span class="nc" id="L18">        produits.add(chaise);</span>
-<span class="nc" id="L19">        produits.add(table);</span>
-<span class="nc" id="L20">        produits.add(lampe);</span>
-<span class="nc" id="L21">        produits.add(lit);</span>
-<span class="nc" id="L22">        produits.add(tableDeChevet);</span>
-<span class="nc" id="L23">        produits.add(bureau);</span>
+<span class="fc" id="L18">        produits.add(chaise);</span>
+<span class="fc" id="L19">        produits.add(table);</span>
+<span class="fc" id="L20">        produits.add(lampe);</span>
+<span class="fc" id="L21">        produits.add(lit);</span>
+<span class="fc" id="L22">        produits.add(tableDeChevet);</span>
+<span class="fc" id="L23">        produits.add(bureau);</span>
 
         // Clients
-<span class="nc" id="L26">        Client guilhem = new Client(1, &quot;Guilhem&quot;, &quot;Obies&quot;);</span>
-<span class="nc" id="L27">        Client cyran = new Client(2, &quot;Cyran&quot;, &quot;Bavay&quot;);</span>
-<span class="nc" id="L28">        Client tristan = new Client(3, &quot;Tristan&quot;, &quot;Houdain&quot;);</span>
+<span class="fc" id="L26">        Client guilhem = new Client(1, &quot;Guilhem&quot;, &quot;Obies&quot;);</span>
+<span class="fc" id="L27">        Client cyran = new Client(2, &quot;Cyran&quot;, &quot;Bavay&quot;);</span>
+<span class="fc" id="L28">        Client tristan = new Client(3, &quot;Tristan&quot;, &quot;Houdain&quot;);</span>
 
-<span class="nc" id="L30">        clients.add(guilhem);</span>
-<span class="nc" id="L31">        clients.add(cyran);</span>
-<span class="nc" id="L32">        clients.add(tristan);</span>
+<span class="fc" id="L30">        clients.add(guilhem);</span>
+<span class="fc" id="L31">        clients.add(cyran);</span>
+<span class="fc" id="L32">        clients.add(tristan);</span>
 
         // Commandes
-<span class="nc" id="L35">        Commande c1 = new Commande(1, LocalDate.of(2024, 1, 14), guilhem);</span>
-<span class="nc" id="L36">        Commande c2 = new Commande(2, LocalDate.of(2024, 1, 24), cyran);</span>
-<span class="nc" id="L37">        Commande c3 = new Commande(3, LocalDate.of(2024, 1, 17), tristan);</span>
+<span class="fc" id="L35">        Commande c1 = new Commande(1, LocalDate.of(2024, 1, 14), guilhem);</span>
+<span class="fc" id="L36">        Commande c2 = new Commande(2, LocalDate.of(2024, 1, 24), cyran);</span>
+<span class="fc" id="L37">        Commande c3 = new Commande(3, LocalDate.of(2024, 1, 17), tristan);</span>
 
-<span class="nc" id="L39">        commandes.add(c1);</span>
-<span class="nc" id="L40">        commandes.add(c2);</span>
-<span class="nc" id="L41">        commandes.add(c3);</span>
+<span class="fc" id="L39">        commandes.add(c1);</span>
+<span class="fc" id="L40">        commandes.add(c2);</span>
+<span class="fc" id="L41">        commandes.add(c3);</span>
 
         // Association des produits et commandes
-<span class="nc" id="L44">        c1.addProduit(chaise);</span>
-<span class="nc" id="L45">        c1.addProduit(bureau);</span>
-<span class="nc" id="L46">        guilhem.addCommande(c1);</span>
+<span class="fc" id="L44">        c1.addProduit(chaise);</span>
+<span class="fc" id="L45">        c1.addProduit(bureau);</span>
+<span class="fc" id="L46">        guilhem.addCommande(c1);</span>
 
-<span class="nc" id="L48">        c2.addProduit(table);</span>
-<span class="nc" id="L49">        c2.addProduit(lampe);</span>
-<span class="nc" id="L50">        cyran.addCommande(c2);</span>
+<span class="fc" id="L48">        c2.addProduit(table);</span>
+<span class="fc" id="L49">        c2.addProduit(lampe);</span>
+<span class="fc" id="L50">        cyran.addCommande(c2);</span>
 
-<span class="nc" id="L52">        c3.addProduit(lit);</span>
-<span class="nc" id="L53">        c3.addProduit(tableDeChevet);</span>
-<span class="nc" id="L54">        tristan.addCommande(c3);</span>
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L52">        c3.addProduit(lit);</span>
+<span class="fc" id="L53">        c3.addProduit(tableDeChevet);</span>
+<span class="fc" id="L54">        tristan.addCommande(c3);</span>
+<span class="fc" id="L55">    }</span>
 
     public static double moyenne(Client client) {
 <span class="fc" id="L58">        double total = 0.0;</span>
 <span class="fc bfc" id="L59" title="All 2 branches covered.">        for (Commande commande : client.getCommandes()) {</span>
 <span class="fc" id="L60">            total += commande.calculerTotal();</span>
-        }
+<span class="fc" id="L61">        }</span>
 <span class="pc bpc" id="L62" title="1 of 2 branches missed.">        return client.getCommandes().isEmpty() ? 0 : total / client.getCommandes().size();</span>
     }
 
@@ -68,8 +68,8 @@ import java.util.List;
 <span class="nc" id="L68">            System.out.println(&quot;  Commande #&quot; + commande.getIdC() + &quot; - Total: &quot; + commande.calculerTotal());</span>
 <span class="nc bnc" id="L69" title="All 2 branches missed.">            for (Produit produit : commande.getProduits()) {</span>
 <span class="nc" id="L70">                System.out.println(&quot;    Produit: &quot; + produit.getNom() + &quot; - Prix: &quot; + produit.getPrix());</span>
-            }
-        }
+<span class="nc" id="L71">            }</span>
+<span class="nc" id="L72">        }</span>
 <span class="nc" id="L73">    }</span>
 
     public static void main(String[] args) {

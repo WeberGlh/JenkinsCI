@@ -1,1 +1,4 @@
+org/example/ProduitTest.class
 org/example/ClientTest.class
+org/example/CommandeTest.class
+org/example/MainTest.class

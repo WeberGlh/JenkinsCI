@@ -19,13 +19,13 @@ public class Commande {
     @JoinColumn(name = &quot;client_id&quot;) // Foreign key column in the Commande table
     private Client client;
 
-    @ManyToMany
+<span class="pc" id="L22">    @ManyToMany</span>
     @JoinTable(
         name = &quot;commande_produit&quot;, // Join table name
         joinColumns = @JoinColumn(name = &quot;commande_id&quot;), // Foreign key for Commande
         inverseJoinColumns = @JoinColumn(name = &quot;produit_id&quot;) // Foreign key for Produit
     )
-<span class="pc" id="L28">    private List&lt;Produit&gt; produits = new ArrayList&lt;&gt;();</span>
+    private List&lt;Produit&gt; produits = new ArrayList&lt;&gt;();
 
 <span class="fc" id="L30">    public Commande(int idC, LocalDate dateC, Client client) {</span>
 <span class="fc" id="L31">        this.idC = idC;</span>
@@ -49,7 +49,7 @@ public class Commande {
 <span class="nc" id="L49">    }</span>
 
     public Client getClient() {
-<span class="nc" id="L52">        return client;</span>
+<span class="fc" id="L52">        return client;</span>
     }
 
     public void setClient(Client client) {
@@ -57,7 +57,7 @@ public class Commande {
 <span class="fc" id="L57">    }</span>
 
     public List&lt;Produit&gt; getProduits() {
-<span class="nc" id="L60">        return produits;</span>
+<span class="fc" id="L60">        return produits;</span>
     }
 
     public void addProduit(Produit p) {
@@ -68,7 +68,7 @@ public class Commande {
 <span class="fc" id="L68">        double total = 0;</span>
 <span class="fc bfc" id="L69" title="All 2 branches covered.">        for (Produit p : produits) {</span>
 <span class="fc" id="L70">            total += p.getPrix();</span>
-        }
+<span class="fc" id="L71">        }</span>
 <span class="fc" id="L72">        return total;</span>
     }
 }

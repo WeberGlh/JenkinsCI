@@ -1,7 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-r307tp3maven,java.org.example,ClientTest,20,0,0,0,4,0,4,0,4,0
-r307tp3maven,org.example,Main,267,30,5,3,53,4,7,2,4,1
-r307tp3maven,org.example,HibernateUtil,75,0,8,0,25,0,10,0,6,0
+r307tp3maven,java.org.example,ProduitTest,20,0,0,0,4,0,4,0,4,0
+r307tp3maven,java.org.example,CommandeTest,20,0,0,0,4,0,4,0,4,0
+r307tp3maven,org.example,Main,92,205,5,3,21,39,6,3,3,2
+r307tp3maven,org.example,HibernateUtil,75,0,8,0,26,0,10,0,6,0
 r307tp3maven,org.example,Client,25,29,0,0,9,10,6,3,6,3
-r307tp3maven,org.example,Produit,43,23,0,0,15,8,9,2,9,2
-r307tp3maven,org.example,Commande,24,48,0,2,8,14,6,5,6,4
+r307tp3maven,org.example,Produit,22,44,0,0,8,15,5,6,5,6
+r307tp3maven,org.example,Commande,18,54,0,2,6,17,4,7,4,6

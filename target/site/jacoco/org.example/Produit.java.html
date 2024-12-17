@@ -20,8 +20,8 @@ public class Produit {
     @Column(name = &quot;stock&quot;, nullable = false)
     private int stock;
 
-    @ManyToMany(mappedBy = &quot;produits&quot;) // Inverse side of the ManyToMany relationship
-<span class="pc" id="L24">    private List&lt;Commande&gt; commandes = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L23">    @ManyToMany(mappedBy = &quot;produits&quot;) // Inverse side of the ManyToMany relationship</span>
+    private List&lt;Commande&gt; commandes = new ArrayList&lt;&gt;();
 
 <span class="fc" id="L26">    public Produit(int idProduit, String nom, double prix, int stock) {</span>
 <span class="fc" id="L27">        this.idProduit = idProduit;</span>
@@ -54,20 +54,20 @@ public class Produit {
 <span class="nc" id="L54">    }</span>
 
     public int getStock() {
-<span class="nc" id="L57">        return stock;</span>
+<span class="fc" id="L57">        return stock;</span>
     }
 
     public void setStock(int stock) {
-<span class="nc" id="L61">        this.stock = stock;</span>
-<span class="nc" id="L62">    }</span>
+<span class="fc" id="L61">        this.stock = stock;</span>
+<span class="fc" id="L62">    }</span>
 
     public List&lt;Commande&gt; getCommandes() {
-<span class="nc" id="L65">        return commandes;</span>
+<span class="fc" id="L65">        return commandes;</span>
     }
 
     public void addCommande(Commande c) {
-<span class="nc" id="L69">        commandes.add(c);</span>
-<span class="nc" id="L70">        c.getProduits().add(this); // Ensure bidirectional consistency</span>
-<span class="nc" id="L71">    }</span>
+<span class="fc" id="L69">        commandes.add(c);</span>
+<span class="fc" id="L70">        c.getProduits().add(this); // Ensure bidirectional consistency</span>
+<span class="fc" id="L71">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
