@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Produit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">r307tp3maven</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Produit.java</span></div><h1>Produit.java</h1><pre class="source lang-java linenums">package org.example;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = &quot;Produit&quot;)
+public class Produit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idProduit;
+
+    @Column(name = &quot;nom&quot;, nullable = false)
+    private String nom;
+
+    @Column(name = &quot;prix&quot;, nullable = false)
+    private double prix;
+
+    @Column(name = &quot;stock&quot;, nullable = false)
+    private int stock;
+
+    @ManyToMany(mappedBy = &quot;produits&quot;) // Inverse side of the ManyToMany relationship
+<span class="pc" id="L24">    private List&lt;Commande&gt; commandes = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L26">    public Produit(int idProduit, String nom, double prix, int stock) {</span>
+<span class="fc" id="L27">        this.idProduit = idProduit;</span>
+<span class="fc" id="L28">        this.nom = nom;</span>
+<span class="fc" id="L29">        this.prix = prix;</span>
+<span class="fc" id="L30">        this.stock = stock;</span>
+<span class="fc" id="L31">    }</span>
+
+<span class="nc" id="L33">    public Produit() {</span>
+<span class="nc" id="L34">    }</span>
+
+    public int getIdProduit() {
+<span class="nc" id="L37">        return idProduit;</span>
+    }
+
+    public String getNom() {
+<span class="nc" id="L41">        return nom;</span>
+    }
+
+    public void setNom(String nom) {
+<span class="nc" id="L45">        this.nom = nom;</span>
+<span class="nc" id="L46">    }</span>
+
+    public double getPrix() {
+<span class="fc" id="L49">        return prix;</span>
+    }
+
+    public void setPrix(double prix) {
+<span class="nc" id="L53">        this.prix = prix;</span>
+<span class="nc" id="L54">    }</span>
+
+    public int getStock() {
+<span class="nc" id="L57">        return stock;</span>
+    }
+
+    public void setStock(int stock) {
+<span class="nc" id="L61">        this.stock = stock;</span>
+<span class="nc" id="L62">    }</span>
+
+    public List&lt;Commande&gt; getCommandes() {
+<span class="nc" id="L65">        return commandes;</span>
+    }
+
+    public void addCommande(Commande c) {
+<span class="nc" id="L69">        commandes.add(c);</span>
+<span class="nc" id="L70">        c.getProduits().add(this); // Ensure bidirectional consistency</span>
+<span class="nc" id="L71">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
